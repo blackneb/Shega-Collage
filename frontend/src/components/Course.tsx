@@ -3,10 +3,7 @@ import Box from '@mui/material/Box';
 import { Button } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
 import CourseTable from "../tables/CourseTable";
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import StudentsTable from "../tables/StudentsTable";
-import StudentModal from '../modals/StudentModal';
 import CourseModal from '../modals/CourseModal';
 
 const style = {

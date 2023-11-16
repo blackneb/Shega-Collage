@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { TextField, Button, FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
+import { useState } from 'react';
+import { Button, FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
 
 
 const CourseModal = () => {
@@ -27,6 +27,7 @@ const CourseModal = () => {
       
   return (
     <div>
+      <p className='font-bold text-xl text-gray-600'>Add New Course</p>
       <form onSubmit={handleSubmit}>
         <FormControl fullWidth margin="normal">
             <InputLabel htmlFor="courseName">Course Name</InputLabel>
@@ -78,7 +79,7 @@ const CourseModal = () => {
         </FormControl>
 
         <Button type="submit" variant="contained" style={{ backgroundColor: '#4CAF50'}}>
-            Register Course
+            Register
         </Button>
         </form>
     </div>

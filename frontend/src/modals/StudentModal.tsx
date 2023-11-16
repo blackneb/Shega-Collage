@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { TextField, Button, FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
+import { useState } from 'react';
+import { Button, FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
 
 const StudentModal = () => {
     const [formData, setFormData] = useState({
@@ -25,6 +25,7 @@ const StudentModal = () => {
       };
   return (
     <div>
+      <p className='font-bold text-xl text-gray-600'>Register Student</p>
       <form onSubmit={handleSubmit}>
       <FormControl fullWidth margin="normal">
         <InputLabel htmlFor="firstName">First Name</InputLabel>
