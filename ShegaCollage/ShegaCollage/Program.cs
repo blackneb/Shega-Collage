@@ -13,7 +13,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<CollageDbContext>(
     o => o.UseNpgsql(builder.Configuration.GetConnectionString("ShegaCollageDb")));
 var app = builder.Build();
-
+builder.Services.AddAuthorization();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

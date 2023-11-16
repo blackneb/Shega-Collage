@@ -44,3 +44,4 @@ D:\shega\ShegaCollage\ShegaCollage\obj\Debug\net8.0\refint\ShegaCollage.dll
 D:\shega\ShegaCollage\ShegaCollage\obj\Debug\net8.0\ShegaCollage.pdb
 D:\shega\ShegaCollage\ShegaCollage\obj\Debug\net8.0\ShegaCollage.genruntimeconfig.cache
 D:\shega\ShegaCollage\ShegaCollage\obj\Debug\net8.0\ref\ShegaCollage.dll
+D:\shega\ShegaCollage\ShegaCollage\obj\Debug\net8.0\ShegaCollage.sourcelink.json
