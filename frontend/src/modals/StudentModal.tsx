@@ -76,10 +76,11 @@ const StudentModal = () => {
         />
         <FormHelperText>Enter a valid phone number</FormHelperText>
       </FormControl>
-
-      <Button type="submit" variant="contained" style={{ backgroundColor: '#4CAF50'}}>
-        Register
-      </Button>
+      <div className='w-full flex mt-4 justify-center'>
+        <Button type="submit" variant="contained" style={{ backgroundColor: '#4CAF50'}}>
+          Register
+        </Button>
+      </div>
     </form>
     </div>
   )

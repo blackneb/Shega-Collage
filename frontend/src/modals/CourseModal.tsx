@@ -37,6 +37,7 @@ const CourseModal = () => {
             type="text"
             value={formData.courseName}
             onChange={handleChange}
+            inputProps={{ style: { width: '55px' } }}
             required
             />
         </FormControl>
@@ -77,10 +78,11 @@ const CourseModal = () => {
             />
             <FormHelperText>Enter the credit hour for the course</FormHelperText>
         </FormControl>
-
-        <Button type="submit" variant="contained" style={{ backgroundColor: '#4CAF50'}}>
-            Register
-        </Button>
+        <div className='w-full flex mt-4 justify-center'>
+          <Button type="submit" variant="contained" style={{ backgroundColor: '#4CAF50'}}>
+              Register
+          </Button>
+        </div>
         </form>
     </div>
   )
