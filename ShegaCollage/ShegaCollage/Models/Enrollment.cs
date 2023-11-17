@@ -5,6 +5,8 @@ namespace ShegaCollage.Models
 {
     public class Enrollment
     {
+        internal readonly int EnrollmentID;
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EnrollmentId { get; set; }

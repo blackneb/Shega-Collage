@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
@@ -25,6 +25,9 @@ const Course = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  useEffect(() => {
+  
+  }, [])
   return (
     <div className="max-h-[calc(100vh-80px)] w-full">
       <div>

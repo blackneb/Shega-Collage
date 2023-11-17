@@ -17,6 +17,8 @@ namespace ShegaCollage.Helper
             CreateMap<StudentDto, Student>();
             CreateMap<GradeDto, Grade>();
             CreateMap<EnrollmentDto, Enrollment>();
+            CreateMap<EnrollmentDetailsDto, Enrollment>();
+            CreateMap<Enrollment, EnrollmentDetailsDto>();
         }
     }
 }

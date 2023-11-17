@@ -45,5 +45,48 @@ namespace ShegaCollage.Controllers
                 return StatusCode(500);
             }
         }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<GradeDto>> DeleteGrade(int id)
+        {
+            var grade = await _context.Grades.FindAsync(id);
+
+            if (grade == null)
+            {
+                return NotFound();
+            }
+
+            _context.Grades.Remove(grade);
+            await _context.SaveChangesAsync();
+
+            var gradeDto = _mapper.Map<GradeDto>(grade);
+
+            return Ok(new { message = "success" });
+        }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<GradeDto>> UpdateGrade(int id, GradeDto updatedGradeDto)
+        {
+            var grade = await _context.Grades.FindAsync(id);
+
+            if (grade == null)
+            {
+                return NotFound();
+            }
+
+            // Update only the letterGrade property
+            grade.LetterGrade = updatedGradeDto.LetterGrade;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(500);
+            }
+
+            var updatedGrade = _mapper.Map<GradeDto>(grade);
+
+            return Ok(updatedGrade);
+        }
     }
 }

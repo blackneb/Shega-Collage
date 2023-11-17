@@ -20,15 +20,20 @@ namespace ShegaCollage.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EnrollmentDto>>> GetEnrollment()
+        public async Task<ActionResult<IEnumerable<EnrollmentDetailsDto>>> GetAllEnrollmentsDetails()
         {
-            if(_context.Enrollments == null)
+            var enrollments = await _context.Enrollments
+                .Include(e => e.Course)
+                .Include(e => e.Student)
+                .ToListAsync();
+
+            if (enrollments == null || !enrollments.Any())
             {
                 return NotFound();
             }
-            var enrollments = await _context.Enrollments.ToListAsync();
-            var enrollmentdtos = _mapper.Map<IEnumerable<EnrollmentDto>>(enrollments);
-            return Ok(enrollmentdtos);
+
+            var enrollmentDetailsDtos = _mapper.Map<IEnumerable<EnrollmentDetailsDto>>(enrollments);
+            return Ok(enrollmentDetailsDtos);
         }
         [HttpPost]
         public async Task<ActionResult<Enrollment>> PostEnrollment(EnrollmentDto enrollmentDto)
@@ -45,5 +50,22 @@ namespace ShegaCollage.Controllers
                 return StatusCode(500);
             }
         }
+        [HttpGet("{enrollmentId}")]
+        public async Task<ActionResult<EnrollmentDetailsDto>> GetEnrollmentById(int enrollmentId)
+        {
+            var enrollment = await _context.Enrollments
+                .Include(e => e.Course)
+                .Include(e => e.Student)
+                .FirstOrDefaultAsync(e => e.EnrollmentId == enrollmentId);
+
+            if (enrollment == null)
+            {
+                return NotFound(); // 404 Not Found if the enrollment with the specified ID is not found
+            }
+
+            var enrollmentDetailsDto = _mapper.Map<EnrollmentDetailsDto>(enrollment);
+            return Ok(enrollmentDetailsDto); // 200 OK with the details of the enrollment
+        }
+
     }
 }

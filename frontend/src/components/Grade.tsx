@@ -86,14 +86,15 @@ const Grade = () => {
           </Box>
         </Modal>
       </div>
-      <div className="flex justify-center m-4">
-        <FormControl margin="normal" sx={{ m: 1, minWidth: 180, height:20 }}>
+      <div className="flex justify-center mb-4">
+        <FormControl margin="normal" sx={{ m: 1, minWidth: 180 }}>
             <InputLabel htmlFor="letterGrade">Course Name</InputLabel>
             <Select
               id="letterGrade"
               name="courseName"
               value={formData.courseName}
               onChange={handleChange}
+              size='small'
               required
             >
               <MenuItem value="A">A</MenuItem>
