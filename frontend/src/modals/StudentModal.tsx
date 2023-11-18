@@ -1,7 +1,35 @@
 import { useState } from 'react';
 import { Button, FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
+import axios from 'axios';
+import { notification } from 'antd';
+import { URL } from '../constants/constants';
 
-const StudentModal = () => {
+
+
+const StudentModal = ({handleClose, getData}:any) => {
+  async function postData(posdata:any){
+    try{
+      const response = await axios.post(URL + "/student",posdata);
+      notification.success({
+        message: 'Student Added Successfully',
+        duration: 5,
+        onClose: () => {
+          console.log('Notification closed');
+        },
+      });
+      handleClose();
+      getData();
+    }
+    catch(error){
+      notification.error({
+        message: 'Please, Try again!',
+        duration: 5,
+        onClose: () => {
+          console.log('Notification closed');
+        },
+      });
+    }
+  }
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -20,7 +48,7 @@ const StudentModal = () => {
       const handleSubmit = (event:any) => {
         event.preventDefault();
         // Add your form submission logic here
-        console.log('Form Data:', formData);
+        postData(formData)
         // You can send the form data to your backend or perform other actions
       };
   return (

@@ -45,3 +45,9 @@ D:\shega\ShegaCollage\ShegaCollage\obj\Debug\net8.0\ShegaCollage.pdb
 D:\shega\ShegaCollage\ShegaCollage\obj\Debug\net8.0\ShegaCollage.genruntimeconfig.cache
 D:\shega\ShegaCollage\ShegaCollage\obj\Debug\net8.0\ref\ShegaCollage.dll
 D:\shega\ShegaCollage\ShegaCollage\obj\Debug\net8.0\ShegaCollage.sourcelink.json
+D:\shega\ShegaCollage\ShegaCollage\bin\Debug\net8.0\System.Web.Cors.dll
+D:\shega\ShegaCollage\ShegaCollage\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+D:\shega\ShegaCollage\ShegaCollage\bin\Debug\net8.0\System.Web.Http.dll
+D:\shega\ShegaCollage\ShegaCollage\bin\Debug\net8.0\System.Web.Http.Cors.dll
+D:\shega\ShegaCollage\ShegaCollage\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\shega\ShegaCollage\ShegaCollage\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

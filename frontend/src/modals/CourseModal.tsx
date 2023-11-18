@@ -1,13 +1,37 @@
 import { useState } from 'react';
 import { Button, FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
-
-
-const CourseModal = () => {
+import axios from 'axios';
+import { notification } from 'antd';
+import { URL } from '../constants/constants';
+const CourseModal = ({handleClose, getData}:any) => {
+    async function postData(posdata:any){
+      try{
+        const response = await axios.post(URL + "/course",posdata)
+        notification.success({
+          message: 'Course Added Successfully',
+          duration: 5,
+          onClose: () => {
+            console.log('Notification closed');
+          },
+        });
+        getData()
+        handleClose()
+      }
+      catch(error){
+        notification.error({
+          message: 'Please, Try again!',
+          duration: 5,
+          onClose: () => {
+            console.log('Notification closed');
+          },
+        });
+      }
+    }
     const [formData, setFormData] = useState({
-        courseName: '',
+        title: '',
         courseCode: '',
         description: '',
-        creditHour: '',
+        creditHours: '',
       });
     
       const handleChange = (event:any) => {
@@ -21,7 +45,7 @@ const CourseModal = () => {
       const handleSubmit = (event:any) => {
         event.preventDefault();
         // Add your form submission logic here
-        console.log('Form Data:', formData);
+        postData(formData);
         // You can send the form data to your backend or perform other actions
       };
       
@@ -33,11 +57,10 @@ const CourseModal = () => {
             <InputLabel htmlFor="courseName">Course Name</InputLabel>
             <Input
             id="courseName"
-            name="courseName"
+            name="title"
             type="text"
-            value={formData.courseName}
+            value={formData.title}
             onChange={handleChange}
-            inputProps={{ style: { width: '55px' } }}
             required
             />
         </FormControl>
@@ -70,9 +93,9 @@ const CourseModal = () => {
             <InputLabel htmlFor="creditHour">Credit Hour</InputLabel>
             <Input
             id="creditHour"
-            name="creditHour"
+            name="creditHours"
             type="number"
-            value={formData.creditHour}
+            value={formData.creditHours}
             onChange={handleChange}
             required
             />

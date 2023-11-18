@@ -1,12 +1,24 @@
 import { useState } from 'react';
 import { Button, FormControl, InputLabel, Input, Select, MenuItem } from '@mui/material';
+import axios from 'axios';
+import { URL } from '../constants/constants';
 
-const EditGradeModal = () => {
+
+const EditGradeModal = ({ getData, handleCloseEdit, editedGrade}:any) => {
+  async function postData(posdata:any){
+    try{
+      const response = await axios.put(URL + `/grade/${editedGrade.gid}`,posdata)
+      getData();
+      handleCloseEdit();
+    }
+    catch(error){
+    }
+  }
     const [formData, setFormData] = useState({
-        studentID: '',
-        courseID: '',
-        academicPeriod: '',
-        letterGrade: '',
+        studentId: editedGrade.sid,
+        courseId: editedGrade.cid,
+        academicPeriod: editedGrade.ap,
+        letterGrade: editedGrade.lg,
       });
     
       const handleChange = (event: any) => {
@@ -20,7 +32,7 @@ const EditGradeModal = () => {
       const handleSubmit = (event: any) => {
         event.preventDefault();
         // Add your form submission logic here
-        console.log('Form Data:', formData);
+        postData(formData);
         // You can send the form data to your backend or perform other actions
       };
   return (
@@ -33,7 +45,7 @@ const EditGradeModal = () => {
             id="studentID"
             name="studentID"
             type="text"
-            value={formData.studentID}
+            value={editedGrade.studentfullname}
             onChange={handleChange}
             required
             disabled
@@ -46,9 +58,10 @@ const EditGradeModal = () => {
             id="courseID"
             name="courseID"
             type="text"
-            value={formData.courseID}
+            value={editedGrade.courset}
             onChange={handleChange}
             required
+            disabled
           />
         </FormControl>
 
@@ -57,7 +70,7 @@ const EditGradeModal = () => {
           <Select
             id="academicPeriod"
             name="academicPeriod"
-            value={formData.academicPeriod}
+            value={editedGrade.ap}
             onChange={handleChange}
             required
           >
@@ -80,7 +93,6 @@ const EditGradeModal = () => {
             <MenuItem value="B">B</MenuItem>
             <MenuItem value="C">C</MenuItem>
             <MenuItem value="D">D</MenuItem>
-            <MenuItem value="E">E</MenuItem>
             <MenuItem value="F">F</MenuItem>
           </Select>
         </FormControl>

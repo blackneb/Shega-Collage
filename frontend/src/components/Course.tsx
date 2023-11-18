@@ -1,10 +1,14 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
 import CourseTable from "../tables/CourseTable";
 import Modal from '@mui/material/Modal';
 import CourseModal from '../modals/CourseModal';
+import axios from 'axios';
+import { URL } from '../constants/constants';
+import Loading from './Loading';
+
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -23,10 +27,23 @@ const style = {
 
 const Course = () => {
   const [open, setOpen] = React.useState(false);
+  const [data, setData] = useState([])
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  async function getData(){
+    try{
+      const response = await axios.get(URL + "/course",{
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      setData(response.data);
+    }
+    catch(error){
+    }
+  }
   useEffect(() => {
-  
+    getData()
   }, [])
   return (
     <div className="max-h-[calc(100vh-80px)] w-full">
@@ -38,16 +55,27 @@ const Course = () => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <CourseModal/>
+            <CourseModal handleClose={handleClose} getData={getData}/>
           </Box>
         </Modal>
       </div>
       <div className="flex justify-center m-4">
         <Button onClick={handleOpen} variant="contained" startIcon={<AddIcon/>} style={{ backgroundColor: '#4CAF50', marginTop:'5px' }}>Add New Course</Button>
       </div>
-      <div className=" mx-20">
-        <CourseTable/>
-      </div>
+      {
+        data.length === 0? (
+        <>
+          <Loading/>
+        </>
+        ):(
+        <>
+        <div className=" mx-20">
+          <CourseTable data = {data}/>
+        </div>
+        </>
+        )
+      }
+      
     </div>
   )
 }

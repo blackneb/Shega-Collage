@@ -4,59 +4,61 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { Table, TableBody, TableContainer, TableHead, TableRow, TablePagination, TableSortLabel } from '@mui/material';
 
 interface Course {
-    courseCode: string;
-    courseName: string;
-    description: string;
-    creditHour: number;
-    numberOfStudents: number;
-  }
-  
-  interface HeadCell {
-    id: keyof Course;
-    label: string;
-  }
-  
-  const coursesData: Course[] = [
-    { courseCode: 'CS101', courseName: 'Introduction to Computer Science', description: 'Fundamentals of programming', creditHour: 3, numberOfStudents: 50 },
-    // Add more courses as needed
-  ];
-  
-  const headCells: HeadCell[] = [
-    { id: 'courseName', label: 'Course Name' },
-    { id: 'courseCode', label: 'Course Code' },
-    { id: 'description', label: 'Description' },
-    { id: 'creditHour', label: 'Credit Hour' },
-    { id: 'numberOfStudents', label: 'Number of Students' },
-  ];
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.white,
-      color: theme.palette.common.black,
-      positon: 'sticky',
-      top:0,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-  
-  const StyledTableRow = styled(TableRow)(() => ({
-    '&:nth-of-type(odd)': {
-        backgroundColor: '#F6F8FB',
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-      border: 0,
-    },
-  }));
-  
-const CourseTable = () => {
+  courseId: number;
+  title: string;
+  courseCode: string;
+  description: string;
+  creditHours: string;
+}
+
+interface HeadCell {
+  id: keyof Course;
+  label: string;
+}
+
+// const coursesData: Course[] = [
+//   { courseId: 1, title: 'Introduction to Computer Science', courseCode: 'CS101', description: 'Fundamentals of programming', creditHours: 3 },
+//   // Add more courses as needed
+// ];
+
+
+const headCells: HeadCell[] = [
+  { id: 'title', label: 'Title' },
+  { id: 'courseCode', label: 'Course Code' },
+  { id: 'description', label: 'Description' },
+  { id: 'creditHours', label: 'Credit Hours' },
+];
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.common.black,
+    position: 'sticky',
+    top: 0,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(() => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: '#F6F8FB',
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+const CourseTable = ({data}:any) => {
+  const coursesData:Course[] = data;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [orderBy, setOrderBy] = useState<keyof Course>('courseName');
+  const [orderBy, setOrderBy] = useState<keyof Course>('title');
   const [order, setOrder] = useState<'asc' | 'desc'>('asc');
 
-  const handleChangePage = (_:any, newPage: number) => {
+  const handleChangePage = (_: any, newPage: number) => {
     setPage(newPage);
   };
 
@@ -86,47 +88,46 @@ const CourseTable = () => {
 
   return (
     <div>
-        <TableContainer>
-      <Table>
-        <TableHead>
-          <StyledTableRow>
-            {headCells.map((headCell) => (
-              <StyledTableCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false}>
-                <TableSortLabel
-                  active={orderBy === headCell.id}
-                  direction={orderBy === headCell.id ? order : 'asc'}
-                  onClick={() => handleRequestSort(headCell.id)}
-                >
-                  {headCell.label}
-                </TableSortLabel>
-              </StyledTableCell>
-            ))}
-          </StyledTableRow>
-        </TableHead>
-        <TableBody>
-          {displayData.map((course) => (
-            <StyledTableRow key={course.courseCode}>
-              <StyledTableCell>{course.courseName}</StyledTableCell>
-              <StyledTableCell>{course.courseCode}</StyledTableCell>
-              <StyledTableCell>{course.description}</StyledTableCell>
-              <StyledTableCell>{course.creditHour}</StyledTableCell>
-              <StyledTableCell>{course.numberOfStudents}</StyledTableCell>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <StyledTableRow>
+              {headCells.map((headCell) => (
+                <StyledTableCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false}>
+                  <TableSortLabel
+                    active={orderBy === headCell.id}
+                    direction={orderBy === headCell.id ? order : 'asc'}
+                    onClick={() => handleRequestSort(headCell.id)}
+                  >
+                    {headCell.label}
+                  </TableSortLabel>
+                </StyledTableCell>
+              ))}
             </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={coursesData.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {displayData.map((course) => (
+              <StyledTableRow key={course.courseId}>
+                <StyledTableCell>{course.title}</StyledTableCell>
+                <StyledTableCell>{course.courseCode}</StyledTableCell>
+                <StyledTableCell>{course.description}</StyledTableCell>
+                <StyledTableCell>{course.creditHours}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={coursesData.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </TableContainer>
     </div>
-  )
-}
+  );
+};
 
-export default CourseTable
+export default CourseTable;

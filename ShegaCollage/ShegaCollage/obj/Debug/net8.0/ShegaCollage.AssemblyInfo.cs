@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShegaCollage")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99e6fcbe6669dc9e8527e7b32c78f0c038f9098c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69d4d2a6459e259dc931b5061d1cf6566b80d8f7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShegaCollage")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShegaCollage")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
