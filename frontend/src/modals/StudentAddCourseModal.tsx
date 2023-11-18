@@ -42,10 +42,8 @@ const StudentAddCourseModal = ({studentId, handleCloseAdd}:any) => {
       };
       const handleSubmit = (event:any) => {
         event.preventDefault();
-        // Add your form submission logic here
         console.log('Form Data:', formData);
         postAddCourse(formData);
-        // You can send the form data to your backend or perform other actions
       };
     useEffect(() => {
         async function getstudent(){

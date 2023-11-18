@@ -16,10 +16,6 @@ interface HeadCell {
   label: string;
 }
 
-// const coursesData: Course[] = [
-//   { courseId: 1, title: 'Introduction to Computer Science', courseCode: 'CS101', description: 'Fundamentals of programming', creditHours: 3 },
-//   // Add more courses as needed
-// ];
 
 
 const headCells: HeadCell[] = [
@@ -45,7 +41,6 @@ const StyledTableRow = styled(TableRow)(() => ({
   '&:nth-of-type(odd)': {
     backgroundColor: '#F6F8FB',
   },
-  // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
   },

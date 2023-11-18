@@ -31,9 +31,7 @@ const EditGradeModal = ({ getData, handleCloseEdit, editedGrade}:any) => {
     
       const handleSubmit = (event: any) => {
         event.preventDefault();
-        // Add your form submission logic here
         postData(formData);
-        // You can send the form data to your backend or perform other actions
       };
   return (
     <div>
