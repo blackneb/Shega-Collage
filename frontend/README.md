@@ -15,7 +15,16 @@
   },
 ```
 ### To start the project 
-1st. $ npm create vite@latest
-2nd. install the packages listed above
-3rd. under "src/constants/" Configure the URL to the server domain/api
-4th. $npm run dev
+1. Create vite project
+```js
+   npm create vite@latest
+  },
+```
+2. Clone the project
+3. Install the packages listed above
+4. Under "src/constants/" Configure the URL to the server domain/api
+5. Start the Project
+```js
+   npm run dev
+  },
+```
