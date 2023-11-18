@@ -18,7 +18,6 @@
 1. Create vite project
 ```js
    npm create vite@latest
-  },
 ```
 2. Clone the project
 3. Install the packages listed above
@@ -26,5 +25,4 @@
 5. Start the Project
 ```js
    npm run dev
-  },
 ```
